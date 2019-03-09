@@ -1,68 +1,21 @@
-%% Relationship-Options connections
-%{
-# Requirements: Create a model for relationships in a field with options. 
-To be done: 
-1. Action Function based on personality, stability and options. 
-2. Scaling to keep things in the radius of 1. 
-%}
+%% Start the variables
+clear;clc; clf;
+iterations  = 100;
+no_male     = 6; no_female = 6; factors   = 4; % initial parameters
 
-clear;clc;clf;
-no_male = 4;
-no_female = 4;
-factors = 4; 
-%% Create grid of random stability for the start
-stability   = zeros(no_male,no_female);
+rand_factor = 0.4 ;stable_factor =0.6; % distribution of desire for stability => check create
+relationship_constant = 0.5; doubt_constant = 0; 
 
-male   = rand(no_male,factors);
-female = rand(no_female,factors);
+jump_start  = 1.2; delusion_effect = 0.3; normal = 0.5; % action related
+flirting_constant = 0.0; % 1-flirting potential for a person
+decrease_factor = 1.5; skip_one = 0.999; % stabilize the relationships that one has
+ex_effect = 2; % increase importance of options difference
+%% Run
 
-% make ambitions to go from 0.5 to 1.
-male(:,factors)   = male(:,factors) ./2 + 0.5;
-female(:,factors) = female(:,factors) ./2 + 0.5;
-
-% increasing similarity increases the personality correlation because of this trick
-personality = ones( no_male,no_female, factors);
-for i = (1: no_male)
-    personality(i,:,:)= abs(female-repmat(male(i,:),no_female,1));
-end
-    
-%% Options
-partner = 0.3;
-[no,no_1] = size(stability);
-%female_options = sum(stability> partner, 1) ;
-%male_options   = sum(stability> partner, 2) ;
-male_opt       = repmat(sum(stability> partner, 2).',no_1,1);
-female_opt     = repmat(sum(stability> partner, 1),no,1);
-options = abs(female_opt-male_opt);
-
-%% Expectations
-
-ambition = personality(:,:,factors);
-
-% expectations factor is the distance between what you want, and what the stability is,
-% + if ambition differences exist then, depending on these differences increase the expectations limit. 
-expect = (ambition - stability) + ((ambition - stability)>0) .* options/10;
-
-%% Actions 
-actions = expect; 
-
-%% Run the connection matrix. 
-looping = 10;
-for i = (1:looping)
-    
-    stability = stability + actions;
-    
-    status = stability( stability);
-    
-    % stability change
-    stability = rescale(stability .* status)  + (stability .* ~status)/3;
-    previous_status = status;
-    if i == 10 || i == 20
-       stability = stability - 1; 
-    end
-    
-    imagesc(stability>0.5);
-    colorbar;
-    axis equal off;
-    pause(1);
-end
+% simplified_run(iterations,no_male,no_female,factors,rand_factor,stable_factor,
+% relationship_constant,doubt_constant,jump_start,delusion_effect,normal,
+% flirting_constant,decrease_factor,skip_one)
+simplified_run(iterations,no_male,no_female,factors,rand_factor,stable_factor,...
+relationship_constant,doubt_constant,jump_start,delusion_effect,normal,...
+flirting_constant,decrease_factor,skip_one, ex_effect);
+%simplified_run(100,10,10,4,0.5,0.5,0.5,0,1,0.05,0.5,0.0,2,0.999);

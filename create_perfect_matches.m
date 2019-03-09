@@ -2,7 +2,6 @@
 Find the way to create a meaningful model about people's personalities. 
 Personality(economic_stability, psychological_stability, colority, ambitions)
 Create the personality matrix. 
-
 number of factors affecting the personality
 factors = 4; % Entered as an argument to the function.
 %}
@@ -11,6 +10,7 @@ function [male, female, personality] = create_perfect_matches(no_male,no_female,
     
     % for simplicity - assume there same number of males and females
     male   = rand(no_male,factors);
+    %male(:, factors) = 0.7;
     %male(factors,factors) = -1;
     female = male;
     

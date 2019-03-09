@@ -4,18 +4,19 @@ These expectations are based on the personality traits and the options the perso
 expect_const is the threshold for the arising of the expectations.
 %}
 
-function expect = expect(options, personality, stability)
-    % expect_const = 0.2;
-    % no_males,no_females = size(stability); 
-    [no_male,no_female,factors] = size(personality);
+function expect = expect( personality, stability, options, female, male, personality_diff)
 
-    % ambition for the relationship = 1 - abs(a,b) <= shows how much what they both want fits.
-    % if it doesn't fit much, then expectations from one side or the other arise.  
-    ambition = 1-(personality(:,:,factors));
+    [no_male,no_female,factors] = size(personality);
     
-    % expectations factor is the distance between what you want, and what the stability is,
-    % + if ambition differences exist then, depending on these differences increase the expectations limit. 
-    % also if there are far more options for one of the sides, expectations arise.
-    expect = (ambition - stability) + (((ambition.*2 - stability)>0) .* (options./10));
+    % Middle-way stability is what a couple can like
+    stab_avg = ones( no_male,no_female);
+    for i = (1: no_male)
+        stab_avg(i,:) = (female(:,factors)+repmat(male(i,factors),no_female,1))./2;
+    end
+    
+    % expectations drive relationships 
+    % they are made of the difference where we are at to where we want to go
+    % the difference in options between the couple and the personality difference, which does not help
+    expect = (stab_avg - stability) - (options./min(no_male,no_female))-personality_diff;
     return
 end
