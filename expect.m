@@ -13,10 +13,10 @@ function expect = expect( personality, stability, options, female, male, persona
     for i = (1: no_male)
         stab_avg(i,:) = (female(:,factors)+repmat(male(i,factors),no_female,1))./2;
     end
-    
+
     % expectations drive relationships 
     % they are made of the difference where we are at to where we want to go
     % the difference in options between the couple and the personality difference, which does not help
-    expect = (stab_avg - stability) - (options./min(no_male,no_female))-personality_diff;
+    expect = ((stab_avg - stability) - (options./min(no_male,no_female))-personality_diff/factors); % max abs of it can be -3 
     return
 end
