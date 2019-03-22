@@ -1,8 +1,9 @@
-# Relationships
+## Relationships
+-----
 Here is the short work on matlab where I try to simplify relationships and to see how they change in an environment where the partners have different options. 
 
-Basic Model: <br />
- <br />
+### Basic Model: 
+-----
   Alphabet: action, expectations, options. <br />
   expect(1) => expectations from participant 1.  <br />
   !expect(x) => decrease of expectations from participant x.  <br />
@@ -11,19 +12,24 @@ Basic Model: <br />
   action(x) => action created from participant x.  <br />
  <br />
 
-Picture to be added later. 
+
+![RRR](https://github.com/DorenCalliku/relationships/blob/master/screenshot.png).
 
 
-I know, its not supposed to be this way - there is no way that human relationships can be represented by some numbers.<br /> 
-If that is the case feel free to critique this model with examples or by pointing out its immense flaws of assumptions.<br /><br /> 
-Assumptions:<br />
+Feel free to critique this model with examples or by pointing out its immense flaws of assumptions.<br /><br /> 
+
+### Assumptions
+-----
 There are several types of people, and a range of genders. <br />
 The way they connect is based on what they are, what is around them, and what is the history between the two (2 is chosen to simplify the problem).<br />
 For the moment group decision making on individual cases is not included. <br />
 This is a constrained model, does not take in consideration most of the third factors (economical, crisis, tragedies, outer problems).<br />
 The logic is that if the two partners are logical people, they understand that the outer happenings cannot affect their relationship,<br />
 maybe these happenings can show something about it.<br /><br />
-Idea: We are beings with personalities( inner characteristics which drive), we take action, create expectations
+
+### Idea
+----
+We are beings with personalities( inner characteristics which drive), we take action, create expectations
 and if things go well - create delusions(single sided love or structured expectations).
 Time we have spent together is measured by rounds, and it affects the importance of our actions. <br />
 Our relationships are affected by the other options that we have around us in place of our partner. <br />
