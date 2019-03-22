@@ -103,3 +103,4 @@ female_friends   = 4; male_friends = 1;
     %avg_male   = mean(sum(memory+rounds,2));
     %avg_female = mean(sum(memory+rounds));
 %end
+

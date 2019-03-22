@@ -20,9 +20,9 @@ lower_lie = 1.2; upper_lie = 1;
  
 %% Personalities creation
 
-%male   = rand(  no_male,factors); female = rand(no_female,factors);
-%[male,female, personality]  = create(male,female,no_male,no_female,factors,rand_factor,stable_factor);
-[male,female,personality]  = create_perfect_matches(no_male,no_female,factors);
+male   = rand(  no_male,factors); female = rand(no_female,factors);
+[male,female, personality]  = create(male,female,no_male,no_female,factors,rand_factor,stable_factor);
+%[male,female,personality]  = create_perfect_matches(no_male,no_female,factors);
 
 %% Initialize matrices
 %function simplified_run(iterations,no_male,no_female,factors,rand_factor,...
@@ -46,9 +46,9 @@ lower_lie = 1.2; upper_lie = 1;
     for i = (1:iterations)
         
         % In the beginning of each iteration, there is a need for the market to show more reliability than it has.
-        %improved_personality = perceive(personality,rounds,lower_limit, upper_limit, lower_lie, upper_lie);
-        %personality_diff     = sum(improved_personality,3)/factors;
-        personality_diff     = sum(personality,3)/factors;
+        improved_personality = perceive(personality,rounds,lower_limit, upper_limit, lower_lie, upper_lie);
+        personality_diff     = sum(improved_personality,3)/factors;
+        %personality_diff     = sum(personality,3)/factors;
         % checking my options of flirting
         % Filtering the people I can flirt with (assume of geographical positions)
         options    = flirt2(stability,personality_diff,relationship_constant, consideration_constant);
@@ -74,9 +74,10 @@ lower_lie = 1.2; upper_lie = 1;
         %status_opt(find(sum(abs(status_rel')) == 0),:)=1;
         stability       = (stability .* status_opt + (stability .* ~status_opt)/decrease_factor).*(stability<1)+(stability>1)*skip_one;
         
-        imagesc(options);
+        
         rels(i,1) = sum(status_rel,'all');
         rels_change(i,1)=sum(abs(status_rel-previous_status),'all');
+        imagesc(stability);
         colorbar;
         axis equal off;
         pause(0.05);
@@ -104,7 +105,7 @@ lower_lie = 1.2; upper_lie = 1;
     end
     
    
-    
+    %{
     subplot(2,1,1);
     title('rels.');
     plot(rels);
@@ -112,13 +113,14 @@ lower_lie = 1.2; upper_lie = 1;
     subplot(2,1,2);
     title('rels change.');
     plot(rels_change);
-    
-    %imagesc(experience)        
-    %axis equal off; colorbar; 
+    %}
+    imagesc(experience)        
+    axis equal off; colorbar; 
     
     %avg_male   = mean(sum(memory+rounds,2));
     %avg_female = mean(sum(memory+rounds));
 %end
+
 
 
 
