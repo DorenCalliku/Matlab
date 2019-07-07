@@ -35,3 +35,4 @@ Our personality can be represented by economic_stability, psychological_stabilit
 These have been chosen for simplisticity for the later inclusion of third factors.  <br />
 Our relationships can be represented dynamically and then we can understand what actually happens to major social change. <br /><br />
 Of course, this is a model not expected to express everything. It just can help create the idea of procedural relationships.<br /> 
+
