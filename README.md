@@ -12,9 +12,7 @@ Here is the short work on matlab where I try to simplify relationships and to se
   action(x) => action created from participant x.  <br />
  <br />
 
-
 ![RRR](https://github.com/DorenCalliku/relationships/blob/master/screenshot.png).
-
 
 Feel free to critique this model with examples or by pointing out its immense flaws of assumptions.<br /><br /> 
 
